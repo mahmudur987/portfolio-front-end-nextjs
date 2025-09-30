@@ -1,11 +1,9 @@
+"use client";
 import { RunningProjects } from "@/constant/worksData";
 import SingleProject from "./SingleProject";
-import { Link } from "react-router";
 import { Button } from "../ui/button";
-
+import Link from "next/link";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 const HomeProjects = () => {
   const settings = {
@@ -60,7 +58,7 @@ const HomeProjects = () => {
       </div>
 
       <div className="flex justify-center ">
-        <Link to="/projects">
+        <Link href="/projects">
           <Button className="my-10" variant={"outline"}>
             See All Projects
           </Button>

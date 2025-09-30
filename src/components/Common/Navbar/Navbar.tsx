@@ -25,6 +25,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ModeToggle } from "../mode-toggle";
+import Image from "next/image";
 
 interface MenuItem {
   title: string;
@@ -77,7 +78,9 @@ const Navbar = ({
           <div className="flex items-center gap-6 justify-between w-full ">
             {/* Logo */}
             <a href={logo.url} className="w-full">
-              <img
+              <Image
+                height={48}
+                width={200}
                 src={logo.src}
                 className="max-h-12 dark:invert w-60 rounded-2xl"
                 alt=""

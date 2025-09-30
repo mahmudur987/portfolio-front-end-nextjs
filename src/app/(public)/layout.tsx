@@ -24,9 +24,8 @@ const Main = ({ children }: { children: React.ReactNode }) => {
           <section className="w-full h-full grow mt-20 relative">
             {children}
           </section>
-
-          <Footer />
         </div>
+        <Footer />
       </motion.section>
     </main>
   );

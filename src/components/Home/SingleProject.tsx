@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { RunningProject } from "@/types";
+import Image from "next/image";
 
 const SingleProject = ({ work }: { work: RunningProject }) => {
   const { picture, projectName, about, technologies, liveSite } = work;
@@ -10,7 +11,9 @@ const SingleProject = ({ work }: { work: RunningProject }) => {
       <Card className="w-full max-w-sm  shadow-md rounded-2xl flex flex-col justify-between h-[500px] ">
         {/* Image */}
         <div className="w-full  overflow-hidden">
-          <img
+          <Image
+            width={500}
+            height={500}
             src={picture}
             alt={projectName}
             className="h-64 w-full object-cover transition-transform duration-300 hover:scale-105"

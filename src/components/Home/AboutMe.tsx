@@ -1,12 +1,16 @@
+"use client";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import AnimatedDescription from "../animation/AnimatedDescription";
 import AboutSectionItems from "./AboutSection";
 import Aos from "aos";
+import { useEffect } from "react";
 
 export default function AboutSection() {
-  Aos.init();
+  useEffect(() => {
+    Aos.init();
+  }, []);
   return (
     <section id="about" className="py-20">
       <div className="container mx-auto px-4 max-w-5xl">
@@ -61,7 +65,6 @@ export default function AboutSection() {
                   "Express",
                   "MongoDB",
                   "TailwindCSS",
-
                   "TypeScript",
                   "GraphQL",
                   "Redux",

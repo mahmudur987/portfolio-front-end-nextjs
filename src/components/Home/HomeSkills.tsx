@@ -1,11 +1,16 @@
+"use client";
 import "aos/dist/aos.css";
 import Aos from "aos";
 import { Badge } from "../ui/badge";
 import { Progress } from "../ui/progress";
-import { Link } from "react-router";
+
 import { Button } from "../ui/button";
+import { useEffect } from "react";
+import Link from "next/link";
 const HomeSkills = () => {
-  Aos.init();
+  useEffect(() => {
+    Aos.init();
+  }, []);
   const skills = [
     { name: "HTML", progress: 90 },
     { name: "CSS", progress: 85 },
@@ -34,7 +39,7 @@ const HomeSkills = () => {
       </h1>
       <div className="flex justify-end max-w-6xl mx-auto w-full font-bold ">
         <Button variant={"secondary"}>
-          <Link to={"/resume"}>Resume</Link>
+          <Link href={"/resume"}>Resume</Link>
         </Button>
       </div>
       <div className="max-w-6xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
