@@ -25,7 +25,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ModeToggle } from "../mode-toggle";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
+import { LoginModal } from "@/components/modal/LogInModal";
 
 interface MenuItem {
   title: string;
@@ -38,7 +40,7 @@ interface MenuItem {
 interface Navbar1Props {
   logo?: {
     url: string;
-    src: string;
+    src: StaticImageData | string;
     alt: string;
     title: string;
   };
@@ -92,6 +94,9 @@ const Navbar = ({
                   {menu.map((item) => renderMenuItem(item))}
                 </NavigationMenuList>
               </NavigationMenu>
+
+              <LoginModal />
+
               <ModeToggle />
             </div>
           </div>
@@ -101,13 +106,15 @@ const Navbar = ({
         <div className="block lg:hidden">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <a href={logo.url} className="flex items-center gap-2">
-              <img
+            <Link href={logo.url} className="flex items-center gap-2">
+              <Image
+                width={100}
+                height={40}
                 src={logo.src}
                 className="max-h-8 dark:invert"
                 alt={logo.alt}
               />
-            </a>
+            </Link>
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon">
@@ -117,13 +124,15 @@ const Navbar = ({
               <SheetContent className="overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>
-                    <a href={logo.url} className="flex items-center gap-2">
-                      <img
+                    <Link href={logo.url} className="flex items-center gap-2">
+                      <Image
+                        width={100}
+                        height={40}
                         src={logo.src}
                         className="max-h-8 dark:invert"
                         alt={logo.alt}
                       />
-                    </a>
+                    </Link>
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
@@ -189,15 +198,15 @@ const renderMobileMenuItem = (item: MenuItem) => {
   }
 
   return (
-    <a key={item.title} href={item.url} className="text-md font-semibold">
+    <Link key={item.title} href={item.url} className="text-md font-semibold">
       {item.title}
-    </a>
+    </Link>
   );
 };
 
 const SubMenuLink = ({ item }: { item: MenuItem }) => {
   return (
-    <a
+    <Link
       className="hover:bg-muted hover:text-accent-foreground flex select-none flex-row gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors"
       href={item.url}
     >
@@ -210,7 +219,7 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
           </p>
         )}
       </div>
-    </a>
+    </Link>
   );
 };
 
