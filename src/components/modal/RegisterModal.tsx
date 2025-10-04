@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { email, z } from "zod";
+import { z } from "zod";
 import {
   Form,
   FormControl,
@@ -21,14 +21,16 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-
 import { toast } from "sonner";
-import type { IErrorResponse } from "@/types";
-import { useState } from "react";
+import { signUp } from "@/actions/auth";
 
-export function RegisterModal() {
-  const [signup, { isLoading }] = useCreateUserMutation();
-  const [openModal, setOpenModal] = useState(false);
+export function RegisterModal({
+  showSignup,
+  setShowSignup,
+}: {
+  showSignup: boolean;
+  setShowSignup: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const formSchema = z
     .object({
       name: z.string().min(2, {
@@ -40,17 +42,8 @@ export function RegisterModal() {
       email: z.string().email(),
       password: z
         .string()
-        .min(8, { message: "Password must be at least 8 characters." })
-        .regex(/[A-Z]/, {
-          message: "Password must contain at least one uppercase letter",
-        })
-        .regex(/[0-9]/, {
-          message: "Password must contain at least one digit",
-        })
-        .regex(/[@$!%*?&#^()\-_=+{}[\]|;:'",.<>/~`]/, {
-          message: "Password must contain at least one special character",
-        }),
-      confirmPassword: z.string().min(8, {
+        .min(6, { message: "Password must be at least 8 characters." }),
+      confirmPassword: z.string().min(6, {
         message: "Confirm password must be at least 8 characters.",
       }),
     })
@@ -70,23 +63,20 @@ export function RegisterModal() {
       confirmPassword: "",
     },
   });
-  // const form = useForm<z.infer<typeof formSchema>>({
-  //   resolver: zodResolver(formSchema),
-  //   defaultValues: {
-  //     name: "babu",
-  //     phone: "01671706881",
-  //     password: "A@1234567",
-  //     confirmPassword: "A@1234567",
-  //   },
-  // });
 
-  // 2. Define a submit handler.
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    const { name, phone, email, password } = values;
+    try {
+      const res = await signUp({ name, phone, email, password, role: "USER" });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+      toast.error("Registration Failed");
+    }
   };
 
   return (
-    <Dialog open={openModal} onOpenChange={setOpenModal}>
+    <Dialog open={showSignup} onOpenChange={setShowSignup}>
       <DialogTrigger asChild>
         <Button size="sm">Sign up</Button>
       </DialogTrigger>
@@ -140,7 +130,7 @@ export function RegisterModal() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Role</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input placeholder="email" type="email" {...field} />
                     </FormControl>
@@ -186,7 +176,8 @@ export function RegisterModal() {
             <Button variant="outline">Cancel</Button>
           </DialogClose>
           <Button form="form" type="submit">
-            {isLoading ? "Loading..." : "Save changes"}
+            {" "}
+            Sign up
           </Button>
         </DialogFooter>
       </DialogContent>

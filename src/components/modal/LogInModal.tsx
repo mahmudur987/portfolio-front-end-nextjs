@@ -23,19 +23,21 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-
 import { toast } from "sonner";
-import type { IErrorResponse } from "@/types";
-import { useState } from "react";
+import { signIn } from "next-auth/react";
 
-export function LoginModal() {
-  const [openModal, setOpenModal] = useState(false);
-
+export function LoginModal({
+  showLogin,
+  setShowLogin,
+}: {
+  showLogin: boolean;
+  setShowLogin: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const formSchema = z.object({
     email: z.string().email(),
     password: z
       .string()
-      .min(8, { message: "Password must be at least 8 characters." }),
+      .min(6, { message: "Password must be at least 8 characters." }),
   });
 
   // 1. Define your form.
@@ -50,10 +52,22 @@ export function LoginModal() {
   // 2. Define a submit handler.
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
+
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        ...values,
+      });
+      console.log(result);
+      toast.success("Login successful!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Login Failed");
+    }
   };
 
   return (
-    <Dialog open={openModal} onOpenChange={setOpenModal}>
+    <Dialog open={showLogin} onOpenChange={setShowLogin}>
       <DialogTrigger asChild>
         <Button size="sm">Login</Button>
       </DialogTrigger>

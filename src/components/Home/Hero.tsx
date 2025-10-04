@@ -24,8 +24,6 @@ const Hero = ({
     Aos.init();
   }, []);
 
-  Aos.init();
-
   return (
     <div
       data-aos="zoom-in"
