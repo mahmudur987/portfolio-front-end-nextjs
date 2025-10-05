@@ -1,5 +1,3 @@
-"use client";
-
 import { Menu } from "lucide-react";
 import logo1 from "../../../assets/logo.png";
 import {
@@ -25,9 +23,10 @@ import {
 import { ModeToggle } from "../mode-toggle";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import { LoginModal } from "@/components/modal/LogInModal";
 import { signOut, useSession } from "next-auth/react";
-import { RegisterModal } from "@/components/modal/RegisterModal";
+
+import AuthModals from "@/components/modal/authModal";
+import AuthPart from "./AuthPart";
 
 interface MenuItem {
   title: string;
@@ -72,10 +71,6 @@ const Navbar = ({
     { title: "BLOG", url: "/blog" },
   ],
 }: Navbar1Props) => {
-  const { data: session, status } = useSession();
-
-  console.log(session);
-  console.log(status);
   return (
     <section className="p-4  fixed top-0 left-0 right-0 z-50 bg-background mx-auto">
       <div className="container mx-auto">
@@ -99,25 +94,7 @@ const Navbar = ({
                 </NavigationMenuList>
               </NavigationMenu>
 
-              {status === "unauthenticated" && <LoginModal />}
-              {status === "unauthenticated" && <RegisterModal />}
-
-              {session && (
-                <div className="flex items-center gap-2">
-                  <p>{session.user.name}</p>
-                  <Button
-                    variant={"ghost"}
-                    className="bg-red-500 ny-2 max-2"
-                    onClick={() =>
-                      signOut({
-                        redirect: false,
-                      })
-                    }
-                  >
-                    LogOut
-                  </Button>
-                </div>
-              )}
+              <AuthPart />
 
               <ModeToggle />
             </div>
@@ -175,7 +152,7 @@ const Navbar = ({
   );
 };
 
-const renderMenuItem = (item: MenuItem) => {
+export const renderMenuItem = (item: MenuItem) => {
   return (
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink

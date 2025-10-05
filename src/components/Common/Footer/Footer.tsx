@@ -1,3 +1,5 @@
+
+import Link from "next/link";
 import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
@@ -6,61 +8,57 @@ export default function Footer() {
       <div className="  px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Logo / Name */}
         <div className="text-center md:text-left">
-          <h2 className="text-2xl font-bold">Your Name</h2>
+          <Link href="/">
+            <span className="text-2xl font-bold">Your Name</span>
+          </Link>
           <p className="text-sm text-gray-200">
-            © {new Date().getFullYear()} All rights reserved.
+            &copy; {new Date().getFullYear()} All rights reserved.
           </p>
         </div>
 
         {/* Navigation Links */}
         <ul className="flex gap-6 text-sm">
           <li>
-            <a
-              href="#about"
-              className="hover:text-yellow-300 transition-colors"
-            >
-              About
-            </a>
+            <Link href="/about">
+              <span className="hover:text-yellow-300 transition-colors">
+                About
+              </span>
+            </Link>
           </li>
           <li>
-            <a
-              href="#projects"
-              className="hover:text-yellow-300 transition-colors"
-            >
-              Projects
-            </a>
+            <Link href="/projects">
+              <span className="hover:text-yellow-300 transition-colors">
+                Projects
+              </span>
+            </Link>
           </li>
           <li>
-            <a
-              href="#contact"
-              className="hover:text-yellow-300 transition-colors"
-            >
-              Contact
-            </a>
+            <Link href="/contact">
+              <span className="hover:text-yellow-300 transition-colors">
+                Contact
+              </span>
+            </Link>
           </li>
         </ul>
 
         {/* Social Icons */}
         <div className="flex gap-5">
-          <a
-            href="https://github.com/mahmudur987"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FaGithub className="w-6 h-6 hover:text-yellow-300 transition-colors" />
-          </a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-            <FaLinkedin className="w-6 h-6 hover:text-yellow-300 transition-colors" />
-          </a>
-          <a
-            href="https://www.facebook.com/mahmudur.rahman.98478/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FaFacebook className="w-6 h-6 hover:text-yellow-300 transition-colors" />
-          </a>
+          <Link href="https://github.com/mahmudur987" target="_blank" rel="noreferrer">
+            <span>
+              <FaGithub className="w-6 h-6 hover:text-yellow-300 transition-colors" />
+            </span>
+          </Link>
+          <Link href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+            <span>
+              <FaLinkedin className="w-6 h-6 hover:text-yellow-300 transition-colors" />
+            </span>
+          </Link>
+          <Link href="https://www.facebook.com/mahmudur.rahman.98478/" target="_blank" rel="noreferrer">
+            <span>
+              <FaFacebook className="w-6 h-6 hover:text-yellow-300 transition-colors" />
+            </span>
+          </Link>
         </div>
       </div>
     </footer>
   );
-}

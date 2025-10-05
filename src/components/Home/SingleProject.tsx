@@ -1,10 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import type { RunningProject } from "@/types";
+import type { project } from "@/types";
 import Image from "next/image";
 
-const SingleProject = ({ work }: { work: RunningProject }) => {
-  const { picture, projectName, about, technologies, liveSite } = work;
+const SingleProject = ({ work }: { work: project }) => {
+  const {
+    picture,
+    projectName,
+    description: about,
+    technologies,
+    liveSite,
+  } = work;
 
   return (
     <div className=" flex justify-center items-center">

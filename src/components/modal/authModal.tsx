@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -14,13 +14,33 @@ export default function AuthModals() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
+  // useEffect(() => {
+  //   if (showLogin) {
+  //     setShowLogin(true);
+  //     setShowSignup(false);
+  //   } else {
+  //     setShowLogin(false);
+  //     setShowSignup(true);
+  //   }
+  // }, [setShowLogin, setShowSignup, showLogin, showSignup]);
+
   return (
     <>
       {/* LOGIN MODAL */}
-      <LoginModal showLogin={showLogin} setShowLogin={setShowLogin} />
+      <LoginModal
+        showLogin={showLogin}
+        setShowLogin={setShowLogin}
+        setShowSignup={setShowSignup}
+      />
 
       {/* SIGNUP MODAL */}
-      <RegisterModal showSignup={showSignup} setShowSignup={setShowSignup} />
+      {showSignup && (
+        <RegisterModal
+          showSignup={showSignup}
+          setShowSignup={setShowSignup}
+          setShowLogin={setShowLogin}
+        />
+      )}
     </>
   );
 }

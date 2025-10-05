@@ -65,3 +65,39 @@ export interface IResponse<T> {
   message: string;
   data: T;
   meta: { page?: number; limit?: number; total: number; totalPage: number };
+}
+
+export interface project {
+  id: string;
+  projectName: string;
+  title: string;
+  description: string;
+  picture: string;
+  projectType: string;
+  features: string[];
+  technologies: string[];
+  startDate: string;
+  endDate: string;
+  liveSite: string;
+  git_frontend: any;
+  git_server: any;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface IBlog {
+  id: string;
+  projectName: string;
+  title: string;
+  description: string;
+  picture: string;
+  projectType: string;
+  features: string[];
+  technologies: string[];
+  startDate: string;
+  endDate: string;
+  liveSite: string;
+  git_frontend: string;
+  git_server: string;
+  createdAt: string;
+  updatedAt: string;
+}

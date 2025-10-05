@@ -1,3 +1,5 @@
+"use client";
+
 import "aos/dist/aos.css";
 import Aos from "aos";
 const SkillsPage = () => {

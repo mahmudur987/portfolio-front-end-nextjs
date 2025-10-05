@@ -1,11 +1,12 @@
 // import html2canvas from "html2canvas";
 // import jsPDF from "jspdf";
 
-import picture from "../../assets/resumi.png";
-import SkillsPage from "../../components/Skills/Skills";
-import EducationPage from "../../components/Education/Education";
-import MyAbility from "../../components/MyAbility/MyAbility";
-import ExperiencePage from "../../components/Experience/Experience";
+import EducationPage from "@/components/Education/Education";
+import ExperiencePage from "@/components/Experience/Experience";
+import MyAbility from "@/components/MyAbility/MyAbility";
+import SkillsPage from "@/components/Skills/Skills";
+import Image from "next/image";
+
 const Resume = () => {
   // const printDocument = () => {
   //   const input = document.getElementById("divToPrint");
@@ -41,7 +42,7 @@ const Resume = () => {
       >
         {/* <div>Note: Here the dimensions of div are same as A4</div>  */}
         <div className="p-2 border border-black mx-auto">
-          <img className="rounded-lg  " src={picture} alt="" />
+          {/* <Image className="rounded-lg  " src={picture} alt="" /> */}
         </div>
       </div>
 

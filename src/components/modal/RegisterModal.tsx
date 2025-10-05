@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { set, z } from "zod";
 import {
   Form,
   FormControl,
@@ -23,14 +23,18 @@ import {
 } from "../ui/form";
 import { toast } from "sonner";
 import { signUp } from "@/actions/auth";
+import { useState } from "react";
 
 export function RegisterModal({
   showSignup,
   setShowSignup,
+  setShowLogin,
 }: {
   showSignup: boolean;
   setShowSignup: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const [loading, setLoading] = useState(false);
   const formSchema = z
     .object({
       name: z.string().min(2, {
@@ -67,11 +71,25 @@ export function RegisterModal({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const { name, phone, email, password } = values;
     try {
+      setLoading(true);
       const res = await signUp({ name, phone, email, password, role: "USER" });
       console.log(res);
+
+      if (res.success) {
+        toast.success(res.message ?? "Registration successful!");
+
+        toast.success("please LogIn to continue");
+        setShowSignup(false);
+        setShowLogin(true);
+        setLoading(false);
+      } else {
+        toast.error(res.message ?? "Registration Failed");
+      }
     } catch (error) {
       console.log(error);
       toast.error("Registration Failed");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -177,8 +195,22 @@ export function RegisterModal({
           </DialogClose>
           <Button form="form" type="submit">
             {" "}
-            Sign up
+            {loading ? "Registering..." : "Register"}
           </Button>
+        </DialogFooter>
+        <DialogFooter>
+          <p>
+            Already have an account?{" "}
+            <button
+              className="underline text-blue-300 mx-2"
+              onClick={() => {
+                setShowSignup(false);
+                setShowLogin(true);
+              }}
+            >
+              logIn
+            </button>
+          </p>
         </DialogFooter>
       </DialogContent>
     </Dialog>

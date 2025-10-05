@@ -1,11 +1,27 @@
 "use client";
-import { RunningProjects } from "@/constant/worksData";
+
 import SingleProject from "./SingleProject";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Slider from "react-slick";
+import { useEffect, useState } from "react";
+import { IResponse, project } from "@/types";
 
 const HomeProjects = () => {
+  const [projects, SetProjects] = useState<project[]>([]);
+  useEffect(() => {
+    async function getProjects() {
+      const res = await fetch("http://localhost:4000/api/v1/project?limit=50");
+      const data: IResponse<project[]> = await res.json();
+
+      const clientProject = data?.data?.filter(
+        (x) => x.projectType === "Client"
+      );
+
+      SetProjects(clientProject);
+    }
+    getProjects();
+  }, []);
   const settings = {
     dots: true,
     autoplay: true,
@@ -50,9 +66,10 @@ const HomeProjects = () => {
         </h1>
         <div className="w-full  max-w-7xl mx-auto">
           <Slider {...settings}>
-            {RunningProjects.slice(0, 4)?.map((work, i) => (
-              <SingleProject key={i} work={work} />
-            ))}
+            {projects.length > 0 &&
+              projects
+                .slice(0, 4)
+                ?.map((work, i) => <SingleProject key={i} work={work} />)}
           </Slider>
         </div>
       </div>

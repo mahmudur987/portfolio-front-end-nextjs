@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { set, z } from "zod";
 import {
   Form,
   FormControl,
@@ -25,14 +25,19 @@ import {
 } from "../ui/form";
 import { toast } from "sonner";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
 
 export function LoginModal({
   showLogin,
   setShowLogin,
+  setShowSignup,
 }: {
   showLogin: boolean;
   setShowLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowSignup: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const [loading, setLoading] = useState(false);
+
   const formSchema = z.object({
     email: z.string().email(),
     password: z
@@ -54,18 +59,22 @@ export function LoginModal({
     console.log(values);
 
     try {
+      setLoading(true);
       const result = await signIn("credentials", {
         redirect: false,
         ...values,
       });
       console.log(result);
       toast.success("Login successful!");
+      setShowLogin(false);
     } catch (err) {
       console.error(err);
       toast.error("Login Failed");
+    } finally {
+      setLoading(false);
     }
   };
-
+  console.log(showLogin);
   return (
     <Dialog open={showLogin} onOpenChange={setShowLogin}>
       <DialogTrigger asChild>
@@ -129,8 +138,22 @@ export function LoginModal({
             <Button variant="outline">Cancel</Button>
           </DialogClose>
           <Button form="form" type="submit">
-            Login
+            {loading ? "Loading..." : "Login"}
           </Button>
+        </DialogFooter>
+        <DialogFooter>
+          <p>
+            Dont have an account?{" "}
+            <button
+              className="underline text-blue-300"
+              onClick={() => {
+                setShowSignup(true);
+                setShowLogin(false);
+              }}
+            >
+              Sign Up
+            </button>
+          </p>
         </DialogFooter>
       </DialogContent>
     </Dialog>

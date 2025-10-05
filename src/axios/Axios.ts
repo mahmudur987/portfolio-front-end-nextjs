@@ -8,3 +8,4 @@ const AXIOSBASEURL = axios.create({
 });
 
 export default AXIOSBASEURL;
+export const base_url = "http://localhost:4000/api/v1";
