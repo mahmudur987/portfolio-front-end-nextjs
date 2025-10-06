@@ -12,9 +12,11 @@ export default async function BlogDetails({
 }) {
   const { slug } = params;
 
-  const res = await fetch(`${base_url}/post/${slug}`);
+  const res = await fetch(`${base_url}/post/${slug}`, {
+    next: { tags: ["post"] },
+  });
   const { data: post } = await res.json();
-  console.log(post);
+
   if (!post) {
     return (
       <div className="text-center py-20">

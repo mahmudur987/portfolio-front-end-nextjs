@@ -1,4 +1,4 @@
-import { Blocks, Home } from "lucide-react";
+import { Blocks, Home, Projector } from "lucide-react";
 
 import {
   Sidebar,
@@ -19,8 +19,13 @@ import { authOptions } from "@/helpers/authOptions";
 const items = [
   {
     title: "Blogs",
-    url: "dashboard/blogs",
+    url: "/dashboard/blogs",
     icon: Blocks,
+  },
+  {
+    title: "Projects",
+    url: "/dashboard/projects",
+    icon: Projector,
   },
   {
     title: "Home",
@@ -31,7 +36,6 @@ const items = [
 
 export async function AppSidebar() {
   const session = await getServerSession(authOptions);
-  console.log(session?.user);
 
   return (
     <Sidebar>
