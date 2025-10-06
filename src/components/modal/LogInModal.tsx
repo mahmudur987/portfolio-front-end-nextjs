@@ -78,7 +78,7 @@ export function LoginModal({
   return (
     <Dialog open={showLogin} onOpenChange={setShowLogin}>
       <DialogTrigger asChild>
-        <Button size="sm">Login</Button>
+        <Button size="sm">Dashboard</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -140,20 +140,6 @@ export function LoginModal({
           <Button form="form" type="submit">
             {loading ? "Loading..." : "Login"}
           </Button>
-        </DialogFooter>
-        <DialogFooter>
-          <p>
-            Dont have an account?{" "}
-            <button
-              className="underline text-blue-300"
-              onClick={() => {
-                setShowSignup(true);
-                setShowLogin(false);
-              }}
-            >
-              Sign Up
-            </button>
-          </p>
         </DialogFooter>
       </DialogContent>
     </Dialog>

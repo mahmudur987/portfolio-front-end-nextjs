@@ -23,11 +23,9 @@ import {
 import { ModeToggle } from "../mode-toggle";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
-
-import AuthModals from "@/components/modal/authModal";
 import AuthPart from "./AuthPart";
 
+export const siteLogo = logo1;
 interface MenuItem {
   title: string;
   url: string;

@@ -6,14 +6,12 @@ import {
   NavigationMenu,
   NavigationMenuList,
 } from "@radix-ui/react-navigation-menu";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { renderMenuItem } from "./Navbar";
 
 const AuthPart = () => {
   const { data: session, status } = useSession();
 
-  // console.log(session);
-  // console.log(status);
   return (
     <>
       {status === "unauthenticated" && <AuthModals />}
