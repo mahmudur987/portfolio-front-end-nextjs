@@ -16,7 +16,7 @@ export default async function ProjectDetail({
   const { id } = params;
 
   const res = await fetch(`${base_url}/project/${id}`, {
-    next: { revalidate: 60 },
+    next: { tags: ["projects"] },
   });
 
   const result = await res.json();
@@ -37,9 +37,9 @@ export default async function ProjectDetail({
     endDate: registered,
     technologies,
     features,
-    clientSite,
+    git_frontend,
     liveSite,
-    serverSite,
+    git_server,
   } = project;
 
   // 🧠 Fix: Convert string to Date safely
@@ -106,16 +106,16 @@ export default async function ProjectDetail({
 
           {/* GitHub / Live Links */}
           <div className="flex flex-col sm:flex-row gap-3 items-center">
-            {clientSite && (
+            {git_frontend && (
               <Button asChild variant="outline">
-                <a href={clientSite} target="_blank" rel="noreferrer">
+                <a href={git_frontend} target="_blank" rel="noreferrer">
                   Frontend Repo
                 </a>
               </Button>
             )}
-            {serverSite && (
+            {git_server && (
               <Button asChild variant="outline">
-                <a href={serverSite} target="_blank" rel="noreferrer">
+                <a href={git_server} target="_blank" rel="noreferrer">
                   Backend Repo
                 </a>
               </Button>

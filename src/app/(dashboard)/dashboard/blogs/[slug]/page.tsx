@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { base_url } from "@/axios/Axios";
 import BlogForm from "@/components/dashboard/BlogForm";
-import { Backpack } from "lucide-react";
+
 import { FaBackward } from "react-icons/fa";
 
 export default async function UpdateBlog({

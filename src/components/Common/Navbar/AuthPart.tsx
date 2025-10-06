@@ -25,7 +25,6 @@ const AuthPart = () => {
       )}
       {session && (
         <div className="flex items-center gap-2">
-          <p>{session.user.name}</p>
           <Button
             variant={"outline"}
             className="text-red-500 ny-2 max-2"

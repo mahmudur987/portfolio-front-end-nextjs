@@ -1,23 +1,9 @@
-// import html2canvas from "html2canvas";
-// import jsPDF from "jspdf";
-
 import EducationPage from "@/components/Education/Education";
 import ExperiencePage from "@/components/Experience/Experience";
 import MyAbility from "@/components/MyAbility/MyAbility";
 import SkillsPage from "@/components/Skills/Skills";
-import Image from "next/image";
 
 const Resume = () => {
-  // const printDocument = () => {
-  //   const input = document.getElementById("divToPrint");
-  //   html2canvas(input).then((canvas) => {
-  //     const imgData = canvas.toDataURL("image/png");
-  //     const pdf = new jsPDF();
-  //     pdf.addImage(imgData, "JPEG", 0, 0);
-  //     pdf.save("download.pdf");
-  //   });
-  // };
-
   return (
     <div>
       <div className="flex justify-end">

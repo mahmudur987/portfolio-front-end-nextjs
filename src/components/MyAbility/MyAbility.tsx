@@ -2,6 +2,7 @@
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Image from "next/image";
 const MyAbility = () => {
   AOS.init();
   const projects = [
@@ -63,7 +64,9 @@ const MyAbility = () => {
             key={project.title}
             className="bg-white shadow-md rounded-md p-4"
           >
-            <img
+            <Image
+              width={130}
+              height={130}
               src={project.image}
               alt={project.title}
               className="w-32 h-32 mb-4 rounded-lg"

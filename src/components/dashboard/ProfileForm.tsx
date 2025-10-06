@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "react-hot-toast";
 import { base_url } from "@/axios/Axios";
-
 type User = {
   id: string;
   name: string;
@@ -22,7 +20,6 @@ type User = {
   createdAt?: string;
   updatedAt?: string;
 };
-
 const ProfileForm = ({ user }: { user: User }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
@@ -45,7 +42,7 @@ const ProfileForm = ({ user }: { user: User }) => {
     e.preventDefault();
     try {
       const res = await fetch(`${base_url}/user/${user.id}`, {
-        method: "PUT",
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });

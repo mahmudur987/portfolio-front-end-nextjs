@@ -67,8 +67,8 @@ export interface project {
   startDate: string;
   endDate: string;
   liveSite: string;
-  git_frontend: any;
-  git_server: any;
+  git_frontend: string;
+  git_server: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -84,25 +84,21 @@ export interface IProject {
   startDate: string;
   endDate: string;
   liveSite: string;
-  git_frontend: any;
-  git_server: any;
+  git_frontend: string;
+  git_server: string;
   createdAt: string;
   updatedAt: string;
 }
 export interface IBlog {
   id: string;
-  projectName: string;
   title: string;
-  description: string;
-  picture: string;
-  projectType: string;
-  features: string[];
-  technologies: string[];
-  startDate: string;
-  endDate: string;
-  liveSite: string;
-  git_frontend: string;
-  git_server: string;
+  content: string;
+  thumbnail: string;
+  tags: string[];
+  author: {
+    name: string;
+    picture: string;
+  };
   createdAt: string;
   updatedAt: string;
 }

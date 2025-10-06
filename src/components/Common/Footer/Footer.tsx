@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -43,17 +42,29 @@ export default function Footer() {
 
         {/* Social Icons */}
         <div className="flex gap-5">
-          <Link href="https://github.com/mahmudur987" target="_blank" rel="noreferrer">
+          <Link
+            href="https://github.com/mahmudur987"
+            target="_blank"
+            rel="noreferrer"
+          >
             <span>
               <FaGithub className="w-6 h-6 hover:text-yellow-300 transition-colors" />
             </span>
           </Link>
-          <Link href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+          <Link
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noreferrer"
+          >
             <span>
               <FaLinkedin className="w-6 h-6 hover:text-yellow-300 transition-colors" />
             </span>
           </Link>
-          <Link href="https://www.facebook.com/mahmudur.rahman.98478/" target="_blank" rel="noreferrer">
+          <Link
+            href="https://www.facebook.com/mahmudur.rahman.98478/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <span>
               <FaFacebook className="w-6 h-6 hover:text-yellow-300 transition-colors" />
             </span>
@@ -62,3 +73,4 @@ export default function Footer() {
       </div>
     </footer>
   );
+}

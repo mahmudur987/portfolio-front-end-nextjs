@@ -9,3 +9,4 @@ const AXIOSBASEURL = axios.create({
 
 export default AXIOSBASEURL;
 export const base_url = "http://localhost:4000/api/v1";
+// export const base_url ="https://portfolio-server-prisma-postgress.vercel.app/api/v1";

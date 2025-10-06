@@ -1,6 +1,9 @@
-import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { NextAuthOptions } from "next-auth";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
+import CredentialsProvider, {
+  CredentialsConfig,
+} from "next-auth/providers/credentials";
+import { OAuthConfig } from "next-auth/providers/oauth";
 
 declare module "next-auth" {
   interface Session {
@@ -19,7 +22,30 @@ declare module "next-auth" {
   }
 }
 
-export const authOptions: NextAuthOptions = {
+export const authOptions: {
+  providers: (
+    | OAuthConfig<GoogleProfile>
+    | CredentialsConfig<{
+        email: {
+          label: string;
+          type: string;
+        };
+        password: {
+          label: string;
+          type: string;
+        };
+      }>
+  )[];
+  callbacks: {
+    jwt({ token, user }: { token: any; user: any }): Promise<any>;
+    session({ session, token }: { session: any; token: any }): Promise<any>;
+  };
+  secret: string | undefined;
+  pages: {
+    signIn: string;
+  };
+  debug: boolean;
+} = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -42,33 +68,30 @@ export const authOptions: NextAuthOptions = {
             `${process.env.NEXT_PUBLIC_BASE_API}/user/login`,
             {
               method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
+              headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 email: credentials.email,
                 password: credentials.password,
               }),
             }
           );
-          console.log("Response From Backend:", res);
+
           const result = await res.json();
+
           if (!result.data) {
             console.error("Login Failed", result);
             return null;
           }
 
           const user = result.data;
-          if (user.id) {
-            return {
-              id: user?.id,
-              name: user?.name,
-              email: user?.email,
-              image: user?.picture,
-            };
-          } else {
-            return null;
-          }
+          return user?.id
+            ? {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                image: user.picture,
+              }
+            : null;
         } catch (err) {
           console.error(err);
           return null;
@@ -78,15 +101,11 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
-        token.id = user?.id;
-      }
+      if (user) token.id = user.id;
       return token;
     },
     async session({ session, token }) {
-      if (session?.user) {
-        session.user.id = token?.id as string;
-      }
+      if (session?.user) session.user.id = token.id as string;
       return session;
     },
   },

@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -14,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { set, z } from "zod";
+import { z } from "zod";
 import {
   Form,
   FormControl,
@@ -30,11 +28,10 @@ import { useState } from "react";
 export function LoginModal({
   showLogin,
   setShowLogin,
-  setShowSignup,
 }: {
   showLogin: boolean;
   setShowLogin: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowSignup: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowSignup?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [loading, setLoading] = useState(false);
 
@@ -56,8 +53,6 @@ export function LoginModal({
 
   // 2. Define a submit handler.
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-
     try {
       setLoading(true);
       const result = await signIn("credentials", {
@@ -74,7 +69,7 @@ export function LoginModal({
       setLoading(false);
     }
   };
-  console.log(showLogin);
+
   return (
     <Dialog open={showLogin} onOpenChange={setShowLogin}>
       <DialogTrigger asChild>

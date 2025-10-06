@@ -7,20 +7,9 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { IBlog } from "@/types";
 
-type Post = {
-  id: string;
-  title: string;
-  content: string;
-  thumbnail: string;
-  tags: string[];
-  author: {
-    name: string;
-    picture: string;
-  };
-};
-
-export default function BlogCard({ post }: { post: Post }) {
+export default function BlogCard({ post }: { post: IBlog }) {
   return (
     <Card className="overflow-hidden transition-all hover:shadow-lg hover:scale-[1.02] duration-200">
       <div className="relative h-56 w-full">

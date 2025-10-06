@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import Image from "next/image";
 
 import { toast } from "sonner";
 import { base_url } from "@/axios/Axios";
@@ -15,18 +14,10 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { FaBackward } from "react-icons/fa";
 
-type Blog = {
-  id: string;
-  title: string;
-  content: string;
-  thumbnail: string;
-  tags: string[];
-  isPublished: boolean;
-};
-
 function BlogForm() {
   const { data } = useSession();
-  console.log(data?.user?.id);
+  // If you are sure 'id' exists, use type assertion:
+  console.log((data?.user as { id?: string })?.id);
   const [isEditing, setIsEditing] = useState(true);
   const [formData, setFormData] = useState({
     title: "",
@@ -69,7 +60,7 @@ function BlogForm() {
           thumbnail,
           tags,
           isPublished,
-          authorId: data?.user?.id,
+          authorId: (data?.user as { id?: string })?.id,
         }),
       });
 

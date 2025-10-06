@@ -1,7 +1,7 @@
 import { base_url } from "@/axios/Axios";
 import ProfileForm from "@/components/dashboard/ProfileForm";
 import { authOptions } from "@/helpers/authOptions";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 
 const page = async () => {
   const session = await getServerSession(authOptions);
@@ -9,7 +9,7 @@ const page = async () => {
     next: { tags: ["user"] },
   });
   const { data } = await res.json();
-  console.log(data);
+
   return <ProfileForm user={data} />;
 };
 

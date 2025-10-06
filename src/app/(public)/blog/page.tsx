@@ -1,17 +1,15 @@
 // src/pages/BlogList.tsx
+import { base_url } from "@/axios/Axios";
 import BlogCard from "@/components/blog/blogCard";
-import { Card, CardContent } from "@/components/ui/card";
 
 import { IBlog, IResponse } from "@/types";
-import Image from "next/image";
-import Link from "next/link";
 
 async function BlogList() {
-  const res = await fetch("http://localhost:4000/api/v1/post?limit=3");
+  const res = await fetch(`${base_url}/post?limit=50`, {
+    next: { tags: ["post"] },
+  });
   const data: IResponse<IBlog[]> = await res.json();
   const blogs = data?.data;
-
-  console.log(blogs);
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-12">
