@@ -10,19 +10,7 @@ export interface RunningProject {
   description?: string;
   registered?: string;
 }
-export interface project {
-  _id: string;
-  picture: string;
-  features: string[];
-  projectName: string;
-  about: string;
-  description: string;
-  registered: Date;
-  liveSite: string;
-  clientSite: string;
-  serverSite: string;
-  technologies: string[];
-}
+
 // src/types/blog.ts
 export type Blog = {
   id: string;
@@ -68,6 +56,23 @@ export interface IResponse<T> {
 }
 
 export interface project {
+  id: string;
+  projectName: string;
+  title: string;
+  description: string;
+  picture: string;
+  projectType: string;
+  features: string[];
+  technologies: string[];
+  startDate: string;
+  endDate: string;
+  liveSite: string;
+  git_frontend: any;
+  git_server: any;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface IProject {
   id: string;
   projectName: string;
   title: string;

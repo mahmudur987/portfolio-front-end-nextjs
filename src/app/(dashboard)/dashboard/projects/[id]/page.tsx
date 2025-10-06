@@ -1,13 +1,13 @@
 import { base_url } from "@/axios/Axios";
 import type { project } from "@/types";
-import ProjectForm from "@/components/dashboard/projectForm";
+import ProjectForm from "@/components/dashboard/update-project-form";
 
 export default async function UpdateProject({
   params,
 }: {
   params: { id: string };
 }) {
-  const { id } = params;
+  const { id } = await params;
 
   const res = await fetch(`${base_url}/project/${id}`, {
     next: { tags: ["projects"] },

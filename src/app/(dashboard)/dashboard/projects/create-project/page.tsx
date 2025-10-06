@@ -1,5 +1,7 @@
+import ProjectForm from "@/components/dashboard/create-project-form";
+
 const CreateProject = () => {
-  return <div>CreateProject Component</div>;
+  return <ProjectForm />;
 };
 
 export default CreateProject;

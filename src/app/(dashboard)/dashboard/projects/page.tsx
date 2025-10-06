@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { FaPlus } from "react-icons/fa";
 const Project = ({ project }: { project: project }) => {
   const {
     projectName,
@@ -65,6 +66,14 @@ const Projects = async () => {
   const personalProjects = result.data;
   return (
     <div className="my-10">
+      <div className="flex justify-end w-full">
+        <Link
+          href="/dashboard/projects/create-project"
+          className="text-blue-600 hover:underline flex gap-2 items-center"
+        >
+          <FaPlus /> Add New Project
+        </Link>
+      </div>
       <h1 className="my-5 text-center text-2xl md:text-3xl lg:text-4xl   text-blue-700  uppercase">
         Projects{" "}
       </h1>
