@@ -110,8 +110,4 @@ export const authOptions: {
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
-  pages: {
-    signIn: "/",
-  },
-  debug: process.env.NODE_ENV === "development",
 };
