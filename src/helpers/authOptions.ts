@@ -4,6 +4,7 @@ import CredentialsProvider, {
   CredentialsConfig,
 } from "next-auth/providers/credentials";
 import { OAuthConfig } from "next-auth/providers/oauth";
+import { base_url } from "@/axios/Axios";
 
 declare module "next-auth" {
   interface Session {
@@ -64,17 +65,14 @@ export const authOptions: {
         }
 
         try {
-          const res = await fetch(
-            `${process.env.NEXT_PUBLIC_BASE_API}/user/login`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                email: credentials.email,
-                password: credentials.password,
-              }),
-            }
-          );
+          const res = await fetch(`${base_url}/user/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: credentials.email,
+              password: credentials.password,
+            }),
+          });
 
           const result = await res.json();
 
