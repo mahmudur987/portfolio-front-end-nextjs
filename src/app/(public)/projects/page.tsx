@@ -10,9 +10,15 @@ const Projects = async () => {
   const result: IResponse<project[]> = (await res.json()) || [];
 
   const clientProject =
-    result.data.filter((x) => x.projectType === "Client") || [];
+    (result.data &&
+      result.data.length > 0 &&
+      result.data.filter((x) => x.projectType === "Client")) ||
+    [];
   const personalProjects =
-    result.data.filter((x) => x.projectType === "Personal") || [];
+    (result.data &&
+      result.data.length > 0 &&
+      result.data.filter((x) => x.projectType === "Personal")) ||
+    [];
   return (
     <div className="my-10">
       <div className=" my-10 md:my-20 lg:my-30 ">
