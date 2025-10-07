@@ -5,7 +5,7 @@ import SkillsPage from "@/components/Skills/Skills";
 
 const Resume = () => {
   return (
-    <div>
+    <div className="container mx-auto w-full flex flex-col gap-10 md:gap-20 lg:gap-30">
       <div className="flex justify-end">
         <a
           href="https://drive.google.com/file/d/1ww1abUz_t6yV3ByvlZ-9k_W3SI_LUyoB/view?usp=sharing"
@@ -17,7 +17,7 @@ const Resume = () => {
       </div>
       <div
         id="divToPrint"
-        className=" hidden"
+        className="hidden"
         style={{
           backgroundColor: "#f5f5f5",
           width: "210mm",
@@ -26,13 +26,9 @@ const Resume = () => {
           marginRight: "auto",
         }}
       >
-        {/* <div>Note: Here the dimensions of div are same as A4</div>  */}
-        <div className="p-2 border border-black mx-auto">
-          {/* <Image className="rounded-lg  " src={picture} alt="" /> */}
-        </div>
+        <div className="p-2 border border-black mx-auto"></div>
       </div>
-
-      <div className="container mx-auto w-full flex flex-col gap-10 md:gap-20 lg:gap-30">
+      <div className="flex flex-col gap-10 md:gap-20 lg:gap-30">
         <div>
           <SkillsPage />
         </div>

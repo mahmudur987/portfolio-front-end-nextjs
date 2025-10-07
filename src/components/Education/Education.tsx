@@ -2,8 +2,11 @@
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useEffect } from "react";
 const EducationPage = () => {
-  AOS.init();
+  useEffect(() => {
+    AOS.init();
+  }, []);
   const educationData = [
     {
       degree: "Bachelor of Science (BSc)",
@@ -17,7 +20,7 @@ const EducationPage = () => {
     },
     {
       degree: "Secondary School Certificate (SSC)",
-      institution: "Darunnajat Siddiquia Kamil Madrasah",
+      institution: "Darunnajatiddiquia Kamil Madrasah",
       year: "2009 - 2010",
     },
   ];

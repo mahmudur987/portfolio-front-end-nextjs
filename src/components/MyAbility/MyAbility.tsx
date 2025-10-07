@@ -3,9 +3,16 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Image from "next/image";
+import { useEffect } from "react";
 const MyAbility = () => {
-  AOS.init();
-  const projects = [
+  useEffect(() => {
+    AOS.init();
+  }, []);
+  const projects: {
+    title: string;
+    description: string;
+    image: string;
+  }[] = [
     {
       title: "Full-Stack Application",
       description:

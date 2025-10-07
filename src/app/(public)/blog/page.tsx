@@ -17,9 +17,15 @@ async function BlogList() {
         Latest Blogs
       </h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {blogs.map((blog) => (
-          <BlogCard key={blog.id} post={blog} />
-        ))}
+        {blogs &&
+          blogs?.length > 0 &&
+          blogs.map((blog) => <BlogCard key={blog.id} post={blog} />)}
+        {!blogs ||
+          (blogs?.length === 0 && (
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-8 text-center">
+              No Blogs Found
+            </h2>
+          ))}
       </div>
     </section>
   );

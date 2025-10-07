@@ -2,8 +2,11 @@
 
 import "aos/dist/aos.css";
 import Aos from "aos";
+import { useEffect } from "react";
 const SkillsPage = () => {
-  Aos.init();
+  useEffect(() => {
+    Aos.init();
+  }, []);
   const skills = [
     { name: "HTML", progress: 90 },
     { name: "CSS", progress: 85 },
