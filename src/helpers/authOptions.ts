@@ -45,7 +45,6 @@ export const authOptions: {
   pages: {
     signIn: string;
   };
-  debug: boolean;
 } = {
   providers: [
     GoogleProvider({
@@ -111,5 +110,4 @@ export const authOptions: {
   pages: {
     signIn: "/auth/login",
   },
-  debug: true,
 };

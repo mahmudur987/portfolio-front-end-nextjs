@@ -8,7 +8,7 @@ const Projects = async () => {
     next: { tags: ["projects"] },
   });
   const result: IResponse<project[]> = (await res.json()) || [];
-
+  console.log(result);
   const clientProject =
     (result.data &&
       result.data.length > 0 &&
@@ -27,13 +27,11 @@ const Projects = async () => {
         </h1>
 
         <div className="flex justify-around flex-wrap gap-5">
-          {clientProject &&
-            clientProject?.length > 0 &&
-            clientProject?.map((work, i) => (
-              <SingleProject key={i} work={work} />
-            ))}
-
-          {clientProject?.length === 0 && (
+          {clientProject && clientProject?.length > 0 ? (
+            clientProject?.map((project) => (
+              <SingleProject key={project.id} work={project} />
+            ))
+          ) : (
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-8 text-center">
               No Projects Found
             </h2>
@@ -45,13 +43,11 @@ const Projects = async () => {
       </h1>
 
       <div className="flex justify-around flex-wrap gap-5">
-        {personalProjects &&
-          personalProjects?.length > 0 &&
+        {personalProjects && personalProjects?.length > 0 ? (
           personalProjects?.map((project) => (
             <Project key={project.id} project={project}></Project>
-          ))}
-
-        {personalProjects?.length === 0 && (
+          ))
+        ) : (
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-8 text-center">
             No Projects Found
           </h2>

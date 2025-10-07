@@ -54,12 +54,17 @@ const HomeProjects = async () => {
           Projects{" "}
         </h1>
         <div className="w-full  max-w-7xl mx-auto">
-          <AppSlider {...settings}>
-            {projects.length > 0 &&
-              projects
-                .slice(0, 4)
-                ?.map((work, i) => <SingleProject key={i} work={work} />)}
-          </AppSlider>
+          {projects && projects.length > 0 ? (
+            <AppSlider {...settings}>
+              {projects.slice(0, 4)?.map((work, i) => (
+                <SingleProject key={i} work={work} />
+              ))}
+            </AppSlider>
+          ) : (
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-8 text-center">
+              No Projects Found
+            </h2>
+          )}
         </div>
       </div>
 
