@@ -26,7 +26,7 @@ const Projects = async () => {
       </h1>
 
       <div className="flex justify-around flex-wrap gap-5">
-        {personalProjects.length > 0 ? (
+        {personalProjects && personalProjects.length > 0 ? (
           personalProjects.map((work, i) => <Project key={i} project={work} />)
         ) : (
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-8 text-center">
