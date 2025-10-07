@@ -8,7 +8,6 @@ const Projects = async () => {
     next: { tags: ["projects"] },
   });
   const result: IResponse<project[]> = (await res.json()) || [];
-  console.log(result);
 
   const clientProject = result.data.filter((x) => x.projectType === "Client");
   const personalProjects = result.data.filter(

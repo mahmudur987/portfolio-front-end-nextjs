@@ -80,8 +80,6 @@ async function BlogList() {
   const data: IResponse<IBlog[]> = await res.json();
   const blogs = data?.data;
 
-  console.log(blogs);
-
   return (
     <section className="max-w-7xl mx-auto px-6 py-12">
       <div className="w-full flex justify-end">

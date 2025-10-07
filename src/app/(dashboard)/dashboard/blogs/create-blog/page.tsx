@@ -17,7 +17,7 @@ import { FaBackward } from "react-icons/fa";
 function BlogForm() {
   const { data } = useSession();
   // If you are sure 'id' exists, use type assertion:
-  console.log((data?.user as { id?: string })?.id);
+
   const [isEditing, setIsEditing] = useState(true);
   const [formData, setFormData] = useState({
     title: "",
