@@ -12,7 +12,7 @@ type User = {
   name: string;
   email: string;
   phone: string;
-  picture: string;
+  profilePicture: string;
   password?: string;
   role?: string;
   status?: string;
@@ -26,7 +26,7 @@ const ProfileForm = ({ user }: { user: User }) => {
     name: user.name || "",
     email: user.email || "",
     phone: user.phone || "",
-    picture: user.picture || "",
+    profilePicture: user.profilePicture || "",
     password: "",
   });
 
@@ -74,7 +74,7 @@ const ProfileForm = ({ user }: { user: User }) => {
             {/* Profile Picture */}
             <div className="flex flex-col items-center gap-3">
               <Image
-                src={formData.picture || "/placeholder-avatar.png"}
+                src={formData.profilePicture || "/placeholder-avatar.png"}
                 alt="Profile Picture"
                 width={120}
                 height={120}
@@ -87,7 +87,7 @@ const ProfileForm = ({ user }: { user: User }) => {
                   type="text"
                   id="picture"
                   name="picture"
-                  value={formData.picture}
+                  value={formData.profilePicture}
                   onChange={handleChange}
                   placeholder="Enter image URL"
                 />

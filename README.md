@@ -1,4 +1,22 @@
 # Portfolio Frontend (Next.js + TypeScript)
+Git FE :https://github.com/mahmudur987/portfolio-front-end-nextjs
+Live FE :https://portfolio-front-end-nextjs.vercel.app/
+
+GIT BE :https://github.com/mahmudur987/Portfolio-Server-Prisma-Postgress
+Live BE:https://portfolio-server-prisma-postgress.vercel.app/
+
+AdminEmail:Admin@gmail.com
+Admin Password:123456
+
+
+
+
+
+
+
+
+
+
 
 **Stack:** Next.js (TypeScript) + Tailwind CSS + React Hot Toast + React Query/RTK Query (optional)  
 **Rendering:** SSG for About, ISR for Blogs & Projects, Client-side for Dashboard (owner only)

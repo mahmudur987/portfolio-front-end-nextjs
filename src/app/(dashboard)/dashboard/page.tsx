@@ -1,14 +1,8 @@
-import { base_url } from "@/axios/Axios";
+import { getProfile } from "@/actions/auth";
 import ProfileForm from "@/components/dashboard/ProfileForm";
-import { authOptions } from "@/helpers/authOptions";
-import { getServerSession } from "next-auth/next";
 
 const page = async () => {
-  const session = await getServerSession(authOptions);
-  const res = await fetch(`${base_url}/user/${session?.user?.id}`, {
-    next: { tags: ["user"] },
-  });
-  const { data } = await res.json();
+  const { data } = await getProfile();
 
   return <ProfileForm user={data} />;
 };
